@@ -38,6 +38,7 @@
     - Sharding-Proxy
     - Sharding-Sidecar
   - SQL性能优化
-    
+- 持久层框架
+  - hibernate
 # 区块链
   个人

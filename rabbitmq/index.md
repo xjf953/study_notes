@@ -128,4 +128,18 @@ public class Consumer {
        （3）主题交换器 Topic
       - 交换器图解
       ![img.png](img.png)
-    
+
+6. 消息确认
+   - 生产者到交换机确认
+      > 在配置中，增加 publisher-confirm-type: correlated
+      代表开启生产者消息确认机制
+   - 交换机到队列确认
+      > 在配置中，增加 publisher-returns: true
+      代表开启交换机到队列
+   - 消费者确认
+      - 自动确认
+        - 消息如果不太重要，允许丢失的情况使用自动ACK机制会提高吞吐量
+        - 配置通道，channel.basicConsume('队列名称',true，DefaultConsumer) true代表自动确认
+      - 手动确认
+         - 我们将通道配置改为false，这时候消息传递给消费者后，队列中消息变成uncheck，也就是待确认
+         - 消费者获取到消息后，调用 channel.basicAck('全局消息ID',false) false代表只确认当前这条消息
